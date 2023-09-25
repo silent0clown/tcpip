@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
     for (int i = 1; i <= count; i++) 
     {
         printf("Operand %d: ", i);
-        fgets(message, BUF_SIZE, stdin);
+        fgets(message, BUF_SIZE, stdin);          // 应该累计到一个数组里，最后一起发
         write(sock, message, strlen(message)); 
     }
     printf("Operator(+ - * /): ");
