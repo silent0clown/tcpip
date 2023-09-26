@@ -12,11 +12,10 @@ int main(int argc, char *argv[])
 
 	pipe(fds);
 	pid=fork();
-
 	if(pid==0)
 	{
 		write(fds[1], str1, sizeof(str1));
-		sleep(2);
+		// sleep(2);
 		read(fds[0], buf, BUF_SIZE);
 		printf("Child proc output: %s \n",  buf);
 	}

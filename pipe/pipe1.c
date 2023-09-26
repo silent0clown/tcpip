@@ -9,16 +9,16 @@ int main(int argc, char *argv[])
 	char buf[BUF_SIZE];
 	pid_t pid;
 	
-	pipe(fds);
-	pid=fork();
-	if(pid==0)
+	pipe(fds);          // pipe函数创建管道,fds数组中保存用于I/O的文件描述符
+	pid=fork();         // 父子进程同时拥有管道
+	if(pid!=0)
 	{
-		write(fds[1], str, sizeof(str));
+		read(fds[0], buf, BUF_SIZE);          // 父进程接收管道信息
+		puts(buf);
 	}
 	else
 	{
-		read(fds[0], buf, BUF_SIZE);
-		puts(buf);
+		write(fds[1], str, sizeof(str));      // 子进程写入管道信息
 	}
 	return 0;
 }
